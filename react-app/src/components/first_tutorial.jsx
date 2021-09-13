@@ -31,5 +31,3 @@ class tutorial1 extends Component {
     return count === 0 ? "Zero" : count;
   }
 }
-
-export default tutorial1;
