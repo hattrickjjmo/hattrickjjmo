@@ -1,0 +1,16 @@
+name: Bruenor
+gender: Male
+race: Human
+class: Fighter
+health: 130
+stamina: 38
+strength: 15
+dexterity: 14
+constitution: 13
+intelligence: 13
+wisdom: 9
+charisma: 9
+equipment: [Longsword, Shield, Chain mail]
+appearance: Blond
+backstory: Soldier
+other: happy

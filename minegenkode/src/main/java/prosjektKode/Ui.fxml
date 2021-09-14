@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<TabPane fx:id="tabPane" prefHeight="852.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prosjektKode.AppController">
+   <tabs>
+      <Tab fx:id="introTab" closable="false" text="Intro">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="859.0" fitWidth="941.0" layoutX="-77.0" layoutY="-7.0" opacity="0.31" pickOnBounds="true">
+                     <image>
+                        <Image url="@intro_bg.jpg" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.47" contrast="-0.36" hue="-0.12" saturation="-1.0" />
+                     </effect>
+                  </ImageView>
+                  <Label alignment="CENTER" text="Character Builder" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="38.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_LEFT" layoutX="70.0" layoutY="106.0" prefHeight="201.0" prefWidth="634.0" text="Welcome to the Character Builder! &#10;&#10;This is a character builder for a thought up role-playing-game (RPG) which is yet to be implemented. Throughout this character builder you will have the option to choose name, gender, abilities, race and class of your character. At the end you will get the option to add some details such as character description or backstory for your character.&#10;&#10;You can also open a previously saved file with the LOAD button to edit, but beware that your characters health, stamina and equipment will be reset to intital values. This is a character builder for new characters....&#10;&#10;To begin a new character, please enter the name of your character and choose a gender..." textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="100.0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="nameField" layoutX="104.0" layoutY="459.0" onKeyReleased="#introKeyReleasedProperty" prefHeight="34.0" prefWidth="223.0" promptText="ex. Bruenor" />
+                  <Label layoutX="197.0" layoutY="431.0" text="Name">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="genderChoice" layoutX="419.0" layoutY="463.0" prefWidth="150.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ChoiceBox>
+                  <Label layoutX="471.0" layoutY="430.0" text="Gender">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="introNxtBtn" disable="true" layoutX="329.0" layoutY="785.0" mnemonicParsing="false" onAction="#onIntroButtonClick" text="NEXT" AnchorPane.bottomAnchor="20.0">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+                  <Button fx:id="loadBtn" layoutX="506.0" layoutY="315.0" mnemonicParsing="false" onAction="#onLoadBtnClick" prefHeight="14.0" prefWidth="67.0" text="LOAD">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <TextField fx:id="loadField" layoutX="104.0" layoutY="318.0" prefHeight="8.0" prefWidth="295.0" />
+                  <Button fx:id="openBtn" layoutX="419.0" layoutY="315.0" mnemonicParsing="false" onAction="#onBrowseBtnClick" prefHeight="31.0" prefWidth="78.0" text="BROWSE">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="abilityTab" closable="false" text="Ability Scores">
+         <content>
+            <AnchorPane prefHeight="830.0" prefWidth="714.0">
+               <children>
+                  <ImageView fitHeight="838.0" fitWidth="807.0" layoutY="-4.0" opacity="0.17" pickOnBounds="true">
+                     <image>
+                        <Image url="@abilities_bg.jpg" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.4" contrast="-0.1" saturation="-1.0" />
+                     </effect>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" text="Ability Scores" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="38.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_CENTER" layoutX="20.0" layoutY="88.0" prefHeight="161.0" prefWidth="674.0" text="In this window you will be determining the ability scores of your character by distributing 72 points to the six different abilities below. The different abilites are STR, DEX, CON INT, WIS and CHR, which are explained beside their respective panels. The standard score-array is (15, 14, 13, 12, 10, 8)&#10;These are the rules:&#10; - An ability must have a maximum score of 20 and a minimium of 1&#10; - An ability is considered good if the score is above 10, and bad if below&#10; - All points must be distributed&#10;&#10;Choose wisely..." wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="88.0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="strField" alignment="CENTER" layoutX="43.0" layoutY="276.0" onKeyReleased="#abilityKeyReleasedProperty" prefHeight="42.0" prefWidth="50.0" />
+                  <Label layoutX="57.0" layoutY="255.0" text="STR">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="55.0" layoutY="335.0" text="DEX">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="52.0" layoutY="414.0" text="CON">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="56.0" layoutY="490.0" text="INT">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="56.0" layoutY="572.0" text="WIS">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="54.0" layoutY="652.0" text="CHR">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="dexField" alignment="CENTER" layoutX="43.0" layoutY="356.0" onKeyReleased="#abilityKeyReleasedProperty" prefHeight="42.0" prefWidth="50.0" />
+                  <TextField fx:id="conField" alignment="CENTER" layoutX="43.0" layoutY="435.0" onKeyReleased="#abilityKeyReleasedProperty" prefHeight="42.0" prefWidth="50.0" />
+                  <TextField fx:id="intField" alignment="CENTER" layoutX="43.0" layoutY="511.0" onKeyReleased="#abilityKeyReleasedProperty" prefHeight="42.0" prefWidth="50.0" />
+                  <TextField fx:id="wisField" alignment="CENTER" layoutX="43.0" layoutY="593.0" onKeyReleased="#abilityKeyReleasedProperty" prefHeight="42.0" prefWidth="50.0" />
+                  <TextField fx:id="chrField" alignment="CENTER" layoutX="43.0" layoutY="673.0" onKeyReleased="#abilityKeyReleasedProperty" prefHeight="42.0" prefWidth="50.0" />
+                  <Button fx:id="abilityNxtBtn" disable="true" layoutX="368.0" layoutY="769.0" mnemonicParsing="false" onAction="#onAbilityNxtButtonClick" onKeyReleased="#abilityKeyReleasedProperty" text="NEXT" AnchorPane.bottomAnchor="34.0">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+                  <Button layoutX="294.0" layoutY="769.0" mnemonicParsing="false" onAction="#onAbilityPrvButtonClick" text="PREV" AnchorPane.bottomAnchor="34.0">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+                  <Label alignment="TOP_LEFT" layoutX="179.0" layoutY="276.0" prefHeight="42.0" prefWidth="489.0" text="Measures bodily power, athletic training, and the extent to which you can exert raw physical force." wrapText="true" />
+                  <Label layoutX="179.0" layoutY="255.0" text="Strength">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="179.0" layoutY="337.0" text="Dexterity">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="179.0" layoutY="416.0" text="Constitution">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="179.0" layoutY="492.0" text="Intelligence">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="179.0" layoutY="573.0" text="Wisdom">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="179.0" layoutY="654.0" text="Charisma">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_LEFT" layoutX="179.0" layoutY="356.0" prefHeight="42.0" prefWidth="489.0" text="Measures agility, reflexes, and balance." wrapText="true" />
+                  <Label alignment="TOP_LEFT" layoutX="179.0" layoutY="435.0" prefHeight="42.0" prefWidth="489.0" text="Measures health, stamina, and vital force." wrapText="true" />
+                  <Label alignment="TOP_LEFT" layoutX="179.0" layoutY="511.0" prefHeight="42.0" prefWidth="489.0" text="Measures mental acuity, accuracy of recall, and the ability to reason." wrapText="true" />
+                  <Label alignment="TOP_LEFT" layoutX="179.0" layoutY="593.0" prefHeight="42.0" prefWidth="489.0" text="Reflects how attuned you are to the world around you and represents perceptiveness and intuition." wrapText="true" />
+                  <Label alignment="TOP_LEFT" layoutX="179.0" layoutY="673.0" prefHeight="42.0" prefWidth="489.0" text="Measures your ability to interact effectively with others. It includes such factors as confidence and eloquence, and it can represent a charming or commanding personality." wrapText="true" />
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab fx:id="raceTab" closable="false" text="Race">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="834.0" prefWidth="694.0">
+               <children>
+                  <ImageView fitHeight="583.0" fitWidth="866.0" layoutX="-57.0" layoutY="465.0" opacity="0.11" pickOnBounds="true">
+                     <image>
+                        <Image url="@race_bg.jpg" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="-0.21" contrast="0.43" saturation="-1.0" />
+                     </effect>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="214.0" layoutY="14.0" text="Race" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="38.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="raceNxtBtn" disable="true" layoutX="367.0" layoutY="782.0" mnemonicParsing="false" onAction="#onRaceNxtButtonClick" text="NEXT" AnchorPane.bottomAnchor="20.0">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+                  <Button layoutX="294.0" layoutY="782.0" mnemonicParsing="false" onAction="#onRacePrvButtonClick" text="PREV" AnchorPane.bottomAnchor="20.0">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+                  <Label alignment="TOP_CENTER" layoutX="45.0" layoutY="74.0" prefHeight="104.0" prefWidth="625.0" text="In this window you will be choosing the race of your character. &#10;You can choose between HUMAN, ELF and ORC. Each race has its own perks and disadvantages. Further details are given under each choice.  &#10;&#10;Tip: Perks are limitbreakers, which means by using the right build, your character can have ability scores of 21, but the opposite is also valid for disadvantages..." textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="humanToggle" layoutX="117.0" layoutY="215.0" mnemonicParsing="false" onAction="#onToggleRaceClick" text="Human" AnchorPane.leftAnchor="117.0">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Race" />
+                     </toggleGroup>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></RadioButton>
+                  <RadioButton fx:id="elfToggle" layoutX="340.0" layoutY="215.0" mnemonicParsing="false" onAction="#onToggleRaceClick" text="Elf" toggleGroup="$Race">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></RadioButton>
+                  <RadioButton fx:id="orcToggle" layoutX="534.0" layoutY="215.0" mnemonicParsing="false" onAction="#onToggleRaceClick" text="Orc" toggleGroup="$Race" AnchorPane.rightAnchor="140.0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></RadioButton>
+                  <ImageView fitHeight="236.0" fitWidth="165.0" layoutX="81.0" layoutY="248.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@Human.jpg" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="-0.03" />
+                     </effect>
+                  </ImageView>
+                  <ImageView fitHeight="234.0" fitWidth="181.0" layoutX="267.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Elf.jpg" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="-0.04" />
+                     </effect>
+                  </ImageView>
+                  <ImageView fitHeight="232.0" fitWidth="167.0" layoutX="477.0" layoutY="249.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@Orc.jpg" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="-0.03" />
+                     </effect>
+                  </ImageView>
+                  <Label alignment="TOP_LEFT" layoutX="45.0" layoutY="523.0" prefHeight="77.0" prefWidth="183.0" text="Humans are the youngest of the common races, late to arrive on the world scene and short-lived in&#10;comparison to elves and orcs.&#10;" wrapText="true" />
+                  <Label alignment="TOP_LEFT" layoutX="255.0" layoutY="523.0" prefHeight="70.0" prefWidth="200.0" text="Elves are a magical people of otherworldly grace, living in the world but not entirely part of it. &#10;" wrapText="true" />
+                  <Label layoutX="46.0" layoutY="608.0" prefHeight="148.0" prefWidth="188.0" text="Perks: &#10;+1 to INT &#10;+1 to CHR&#10;&#10;Disadvantages:&#10; - 1 to WIS" wrapText="true" />
+                  <Label alignment="TOP_LEFT" layoutX="461.0" layoutY="523.0" prefHeight="70.0" prefWidth="200.0" text="Orcs are a hardy warrior race who regard battle scars as tokens of pride and ornamental scars as things of beauty." wrapText="true" />
+                  <Label layoutX="254.0" layoutY="608.0" prefHeight="148.0" prefWidth="188.0" text="Perks: &#10;+1 to DEX &#10;+1 to WIS&#10;&#10;Disadvantages:&#10; - 1 to STR" wrapText="true" />
+                  <Label layoutX="460.0" layoutY="608.0" prefHeight="148.0" prefWidth="188.0" text="Perks: &#10;+1 to STR &#10;+1 to CON&#10;&#10;Disadvantages:&#10; - 1 to INT" wrapText="true" />
+               </children>
+               <effect>
+                  <ColorAdjust />
+               </effect></AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="classTab" closable="false" text="Class">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="832.0" fitWidth="1499.0" layoutX="-187.0" layoutY="-7.0" opacity="0.14" pickOnBounds="true">
+                     <image>
+                        <Image url="@class_bg.jpeg" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.52" contrast="0.29" saturation="-1.0" />
+                     </effect>
+                  </ImageView>
+                  <Label alignment="CENTER" text="Class" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="38.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_CENTER" layoutX="45.0" layoutY="83.0" prefHeight="78.0" prefWidth="625.0" text="In this window you will be choosing the class of your character. Classes mainly choose your style of fighting and your starting equipment.&#10;You can choose between FIGHTER, WIZARD, ROGUE  and BARD. Each of these described in further detail beside each choice. " textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="294.0" layoutY="782.0" mnemonicParsing="false" onAction="#onClassPrvButtonClick" text="PREV" AnchorPane.bottomAnchor="20.0">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+                  <Button fx:id="classNxtBtn" disable="true" layoutX="367.0" layoutY="782.0" mnemonicParsing="false" onAction="#onClassNxtButtonClick" text="NEXT" AnchorPane.bottomAnchor="20.0">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+                  <ImageView fitHeight="92.0" fitWidth="97.0" layoutX="54.0" layoutY="195.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@fighter.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="-0.03" />
+                     </effect>
+                  </ImageView>
+                  <ImageView fitHeight="91.0" fitWidth="83.0" layoutX="63.0" layoutY="324.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@wizard.jpg" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="-0.03" />
+                     </effect>
+                  </ImageView>
+                  <RadioButton fx:id="wizardToggle" layoutX="58.0" layoutY="307.0" mnemonicParsing="false" onAction="#onToggleClassClick" text="Wizard">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Class" />
+                     </toggleGroup>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="fighterToggle" layoutX="59.0" layoutY="178.0" mnemonicParsing="false" onAction="#onToggleClassClick" text="Fighter" toggleGroup="$Class">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <ImageView fitHeight="92.0" fitWidth="97.0" layoutX="70.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@rogue.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="-0.03" />
+                     </effect>
+                  </ImageView>
+                  <RadioButton fx:id="rogueToggle" layoutX="60.0" layoutY="437.0" mnemonicParsing="false" onAction="#onToggleClassClick" text="Rogue" toggleGroup="$Class">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <ImageView fitHeight="92.0" fitWidth="97.0" layoutX="61.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@bard.jpg" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="-0.03" />
+                     </effect>
+                  </ImageView>
+                  <RadioButton fx:id="bardToggle" layoutX="60.0" layoutY="585.0" mnemonicParsing="false" onAction="#onToggleClassClick" text="Bard" toggleGroup="$Class">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Label alignment="TOP_LEFT" layoutX="198.0" layoutY="187.0" prefHeight="97.0" prefWidth="450.0" text="Fighters learn the basics of all combat styles. Every fighter can swing an axe, fence with a rapier, wield a longsword or a greatsword, use a bow, and even trap foes in a net with some degree of skill.&#10;&#10;Starting equipment: Longsword, shield and chain mail &#10;" wrapText="true" />
+                  <Label alignment="TOP_LEFT" layoutX="198.0" layoutY="316.0" prefHeight="97.0" prefWidth="450.0" text="Wizards live and die by their spells. Everything else is secondary. They learn new spells as they experiment and grow in experience.&#10;&#10;Starting equpiment: Arcane focus, quarterstaff and spellbook&#10;" wrapText="true" />
+                  <Label alignment="TOP_LEFT" layoutX="198.0" layoutY="446.0" prefHeight="97.0" prefWidth="450.0" text="Rogues devote as much effort to mastering the use of a variety of skills as they do to perfecting their combat abilities, giving them a broad expertise that few other characters can match. Many rogues focus on stealth and deception.&#10;&#10;Starting equipment: Shortbow(20 arrows), dagger, leather armor&#10;" wrapText="true" />
+                  <Label alignment="TOP_LEFT" layoutX="198.0" layoutY="594.0" prefHeight="97.0" prefWidth="450.0" text="The bard is a master of song, speech, and the magic they contain. For a bard words and music are not just vibrations of air, but vocalizations with power all their own.  Bards are capable of defending themselves in melee if necessary.&#10;&#10;Starting equipment: Lute, shortsword, leather armor" wrapText="true" />
+               </children></AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="descriptionTab" closable="false" text="Description">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="852.0" fitWidth="1002.0" layoutX="-134.0" opacity="0.15" pickOnBounds="true">
+                     <image>
+                        <Image url="@details_bg.jpg" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.4" contrast="0.38" saturation="-1.0" />
+                     </effect>
+                  </ImageView>
+                  <Label alignment="CENTER" text="Description" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="38.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="294.0" layoutY="782.0" mnemonicParsing="false" onAction="#onDescriptPrvButtonClick" text="PREV" AnchorPane.bottomAnchor="20.0">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+                  <Button layoutX="367.0" layoutY="782.0" mnemonicParsing="false" onAction="#onDescriptNxtButtonClick" text="NEXT" AnchorPane.bottomAnchor="20.0">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+                  <Label alignment="TOP_CENTER" layoutX="45.0" layoutY="96.0" prefHeight="78.0" prefWidth="625.0" text="In this window you will be adding optional describing features and details about your character such as character appearance and background story. &#10;&#10;Let your imagination run free!&#10;" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="appText" layoutX="45.0" layoutY="229.0" prefHeight="459.0" prefWidth="198.0" promptText="Describe your character..." wrapText="true" />
+                  <TextArea fx:id="backText" layoutX="258.0" layoutY="229.0" prefHeight="267.0" prefWidth="409.0" promptText="Tell the story of your character..." wrapText="true" />
+                  <Label layoutX="45.0" layoutY="205.0" text="Character Appearance">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="259.0" layoutY="205.0" text="Character Backstory">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="otherText" layoutX="258.0" layoutY="558.0" prefHeight="130.0" prefWidth="408.0" promptText="Other details you would like to add about your character..." wrapText="true" />
+                  <Label layoutX="259.0" layoutY="532.0" text="Other details">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="endTab" closable="false" text="Save &amp; End">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView disable="true" fitHeight="831.0" fitWidth="723.0" layoutX="-2.0" layoutY="-1.0" opacity="0.16" pickOnBounds="true">
+                     <image>
+                        <Image url="@end_bg.jpg" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="-0.1" contrast="0.07" hue="-0.05" saturation="-1.0" />
+                     </effect>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="249.0" layoutY="26.0" text="Save &amp; End" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="38.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="330.0" layoutY="782.0" mnemonicParsing="false" onAction="#onEndPrvButtonClick" text="PREV" AnchorPane.bottomAnchor="20.0">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+                  <Label alignment="TOP_CENTER" layoutX="45.0" layoutY="110.0" prefHeight="87.0" prefWidth="625.0" text="You hav reached the end of the Character builder!&#10;&#10;Before clicking the save &amp; end button be sure that you have built your chracter as you would seem fit. &#10;Clicking the button will save the character to a character sheet file and then exit the program.&#10;&#10;" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="endBtn" layoutX="192.0" layoutY="517.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="101.0" prefWidth="314.0" text="SAVE &amp; END">
+                     <font>
+                        <Font name="Tempus Sans ITC" size="27.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="0.7047021389007568" green="0.75" blue="0.6974999904632568" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+   </tabs>
+</TabPane>
